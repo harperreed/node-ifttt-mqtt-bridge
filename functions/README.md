@@ -101,7 +101,7 @@ Choose content type `application/x-www-form-urlencoded`
 
 ![](https://i.imgur.com/I5RaGz0.png)
 
-enter your params: api_key=apikey&payload=on&topic=ifttt/goodnight&created= {{CreatedAt}}
+enter your params: `api_key=apikey&payload=on&topic=ifttt/goodnight&created={{CreatedAt}}`
 
 ![](https://i.imgur.com/lMgpVr7.png)
 
