@@ -6,6 +6,24 @@ This is very helpful when connecting Google Home/Alexa/whatever to Home Assistan
 
 Some inspiration came from the [IFTTT/Maker plugin for control4](https://www.chowmainsoft.com/ifttt/) and the [HTTP to MQTT bridge for home assistant](https://home-assistant.io/blog/2017/03/28/http-to-mqtt-bridge/). 
 
+The main motivation is to create a bridge between inside of your house and the outside internet without having to poke a hole in the firewall or compromise your network. 
+
+As long as you have an MQTT broker set up with your home automation system (Home Assistant), this allows you to easily send MQTT topics to your internal system without having to change your router settings. 
+
+The side effect of using MQTT is that the webhook -> MQTT message -> subscriber getting the message is fast. There should be minimal latency. 
+
+## Example usage
+
+Here are a couple ideas (all using IFTTT): 
+
+* Use google home / alexa to trigger a goodnight topic to trigger a home assistant automation to turn the house into goodnight mode
+* Trigger a home assistant automation to flash a light when you get a new email or an email from a special person (Using Gmail)
+* Trigger a home assistant automation to flash a light when your favorite sports team makes a score (Using ESPN)
+* Trigger a home assistant automation to flash a light when your car is near (Using Automatic)
+* Trigger a home assistant automation to flash a light if life360 family is away (Using life360)
+
+There are lots of options. With a small amount of modification this could easily work with API.AI as a bridge for a more conversational approach. 
+
 ## Getting started
 
 * Create a project at Firebase.com
