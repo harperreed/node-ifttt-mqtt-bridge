@@ -85,6 +85,14 @@ For instance:
 
 You can put this into IFTTT Webhooks :
 
+![](https://i.imgur.com/GLVtGcO.png)
 
+![](https://i.imgur.com/ZwaSWRN.png)
+
+![](https://i.imgur.com/I5RaGz0.png)
+
+![](https://i.imgur.com/OOQPLpE.png)
+
+![](https://i.imgur.com/lMgpVr7.png)
 
 
