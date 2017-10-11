@@ -54,22 +54,22 @@ Like so:
     i  functions: packaged functions (2.29 KB) for uploading
     ✔  functions: functions folder uploaded successfully
     i  starting release process (may take several minutes)...
-    i  functions: updating function post_message...
+    i  functions: updating function post...
     ✔  functions[post_message]: Successful update operation.
     ✔  functions: all functions deployed successfully!
 
     ✔  Deploy complete!
 
     Project Console: https://console.firebase.google.com/project/mqtttest/overview
-    Function URL (post_message): https://us-central1-mqtttest.cloudfunctions.net/post_message
+    Function URL (post_message): https://us-central1-mqtttest.cloudfunctions.net/post
 
 ## Usage
 
-Once you deploy you will get a URL: `https://us-central1-mqtttest.cloudfunctions.net/post_message`
+Once you deploy you will get a URL: `https://us-central1-mqtttest.cloudfunctions.net/post`
 
 You can use this url to send a topic and payload to the MQTT:
 
-`curl https://us-central1-mqtttest.cloudfunctions.net/post_message -d "topic=IFTTT/goodnight" -d "payload=on" -d "api_key=apikey"`
+`curl https://us-central1-mqtttest.cloudfunctions.net/post -d "topic=IFTTT/goodnight" -d "message=on" -d "key=apikey"`
 
 response: 
 
@@ -79,7 +79,7 @@ You can send any topic or payload you want.
 
 For instance: 
 
-`curl https://us-central1-mqtttest.cloudfunctions.net/post_message -d "topic=IFTTT/goodnight" -d "payload=on" -d "api_key=apikey"`
+`curl https://us-central1-mqtttest.cloudfunctions.net/post -d "topic=IFTTT/goodnight" -d "message=on" -d "key=apikey"`
 
 ### IFTTT
 
@@ -90,7 +90,7 @@ Choose your trigger (Google Home, SMS, etc). For the *that* you will need to cho
 You want to use the webhooks action. 
 ![](https://i.imgur.com/GLVtGcO.png)
 
-Enter your URL: `https://us-central1-mqtttest.cloudfunctions.net/post_message`
+Enter your URL: `https://us-central1-mqtttest.cloudfunctions.net/post`
 ![](https://i.imgur.com/ZwaSWRN.png)
 
 Choose method `POST`
@@ -101,7 +101,7 @@ Choose content type `application/x-www-form-urlencoded`
 
 ![](https://i.imgur.com/I5RaGz0.png)
 
-enter your params: api_key=apikey&payload=on&topic=ifttt/goodnight&created= {{CreatedAt}}
+enter your params: key=apikey&message=on&topic=ifttt/goodnight&created= {{CreatedAt}}
 
 ![](https://i.imgur.com/lMgpVr7.png)
 
