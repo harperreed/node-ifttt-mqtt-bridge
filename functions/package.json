@@ -1,0 +1,10 @@
+{
+  "name": "node-ifttt-mqtt-bridge",
+  "description": "node-ifttt-mqtt-bridge for firebase",
+  "dependencies": {
+    "firebase-admin": "~5.2.1",
+    "firebase-functions": "^0.6.2",
+    "mqtt": "^2.13.0"
+  },
+  "private": true
+}
