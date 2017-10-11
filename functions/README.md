@@ -1,4 +1,4 @@
-# node-ifttt-mqtt-bridge
+# Firebase Webhook (IFTTT) -> MQTT bridge
 
 A simple firebase bridge that will take the topic and payload posted to a webhook and send it to a MQTT broker. 
 
@@ -85,14 +85,42 @@ For instance:
 
 You can put this into IFTTT Webhooks :
 
+Choose your trigger (Google Home, SMS, etc). For the *that* you will need to choose the webhooks action: 
+
+You want to use the webhooks action. 
 ![](https://i.imgur.com/GLVtGcO.png)
 
+Enter your URL: `https://us-central1-mqtttest.cloudfunctions.net/post_message`
 ![](https://i.imgur.com/ZwaSWRN.png)
 
-![](https://i.imgur.com/I5RaGz0.png)
+Choose method `POST`
 
 ![](https://i.imgur.com/OOQPLpE.png)
 
+Choose content type `application/x-www-form-urlencoded`
+
+![](https://i.imgur.com/I5RaGz0.png)
+
+enter your params: api_key=apikey&payload=on&topic=ifttt/goodnight&created= {{CreatedAt}}
+
 ![](https://i.imgur.com/lMgpVr7.png)
+
+Hit save 
+
+Then execute your trigger (*Hey Google, goodnight*)
+
+It should send the `ifttt/goodnight` topic to the MQTT broker. Home assistant or whatever can execute based on that topic. 
+
+
+## Why firebase? 
+
+Firebase is easy to use, and more importantly, is free for our usage. 
+
+## Contribute
+
+1. Fork the repo
+2. Make a pull request
+3.     
+4. Profit 
 
 
