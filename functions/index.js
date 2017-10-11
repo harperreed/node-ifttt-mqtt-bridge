@@ -22,7 +22,7 @@ exports.post = functions.https.onRequest((request, response) => {
 
   // Safety first. Check to see if the API key is correct.
   if (functions.config().access.api_key != request.body.key) {
-    console.log("API KEY  doesn't match");
+    console.log("API KEY doesn't match");
     response.send("404 Error");
     return;
   }
@@ -47,20 +47,29 @@ exports.post = functions.https.onRequest((request, response) => {
   var topic = request.body.topic;
   var message = request.body.message;
 
+  client.on('connect', function () {
+    console.log('client connected');
+  });
+
+  client.on('error', function(err) {
+    console.error(err);
+  });
+
   //debugging - check the firebase function log
   console.log("topic: " + topic);
   console.log("message: "  + message);
 
   //publish the topic and payload
-  client.publish(topic, message,function(err) {
+  client.publish(topic, message, function(err) {
     // handle the error
     if ( err ) {
       console.log("Error:" + err);
       response.send("Error:" + err);
       return;
     }
+
     //If the publish is successful then return
-    response.send("Successfullly published message: " + message + "  to topic: " + topic);
+    response.send("Successfullly published message: '" + message + "' to topic: " + topic);
 
     //end the connection to the mqtt server
     client.end();
