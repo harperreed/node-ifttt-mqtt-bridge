@@ -2,9 +2,9 @@ const functions = require('firebase-functions');
 
 /*
 
-Configuration: 
+Configuration:
 
-You will have to configure a handful of firebase config vars. 
+You will have to configure a handful of firebase config vars.
 
   firebase functions:config:set mqtt.server.port=12345
   firebase functions:config:set mqtt.server.host=mqtt://mxx.cloudmqtt.com
@@ -12,20 +12,19 @@ You will have to configure a handful of firebase config vars.
   firebase functions:config:set mqtt.server.password=password
   firebase functions:config:set access.api_key=secretapikey
 
-
 */
 
 //Instantiat MQTT
-var mqtt = require('mqtt')
+var mqtt = require('mqtt');
 
 //Let's post a message to an MQTT topic. Whee
 exports.post_message = functions.https.onRequest((request, response) => {
 
-  // Safety first. Check to see if the API key is correct. 
-  if (functions.config().access.api_key != request.body.api_key){
-    console.log("API KEY  doesn't match")
+  // Safety first. Check to see if the API key is correct.
+  if (functions.config().access.api_key != request.body.api_key) {
+    console.log("API KEY  doesn't match");
     response.send("404 Error");
-    return
+    return;
   }
 
   //Options for connecting to the MQTT host
@@ -45,32 +44,26 @@ exports.post_message = functions.https.onRequest((request, response) => {
 
   //Let's connect
   var client = mqtt.connect(functions.config().mqtt.server.host, options);
+  var topic = request.body.topic;
+  var payload = request.body.payload;
 
-  date = new Date();
-  console.log(request.body)
-  topic = request.body.topic
-  payload = request.body.payload
-  
   //debugging - check the firebase function log
-  console.log("topic: " + topic)
-  console.log("payload: "  + payload)
+  console.log("topic: " + topic);
+  console.log("payload: "  + payload);
 
-
-  //publish the topic and payload 
-  client.publish(topic, payload,function(err){
-    
+  //publish the topic and payload
+  client.publish(topic, payload,function(err) {
     // handle the error
     if ( err ) {
-      console.log("Error:" +  err );
-      response.send("Error:" +  err);
-      return
+      console.log("Error:" + err);
+      response.send("Error:" + err);
+      return;
     }
     //If the publish is successful then return
-    response.send("payload posted sent!"); 
+    response.send("payload posted sent!");
 
     //end the connection to the mqtt server
-    client.end() 
+    client.end();
   });
-  
 
 });
