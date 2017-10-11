@@ -18,10 +18,10 @@ You will have to configure a handful of firebase config vars.
 var mqtt = require('mqtt');
 
 //Let's post a message to an MQTT topic. Whee
-exports.post_message = functions.https.onRequest((request, response) => {
+exports.post = functions.https.onRequest((request, response) => {
 
   // Safety first. Check to see if the API key is correct.
-  if (functions.config().access.api_key != request.body.api_key) {
+  if (functions.config().access.api_key != request.body.key) {
     console.log("API KEY  doesn't match");
     response.send("404 Error");
     return;
@@ -45,14 +45,14 @@ exports.post_message = functions.https.onRequest((request, response) => {
   //Let's connect
   var client = mqtt.connect(functions.config().mqtt.server.host, options);
   var topic = request.body.topic;
-  var payload = request.body.payload;
+  var message = request.body.message;
 
   //debugging - check the firebase function log
   console.log("topic: " + topic);
-  console.log("payload: "  + payload);
+  console.log("message: "  + message);
 
   //publish the topic and payload
-  client.publish(topic, payload,function(err) {
+  client.publish(topic, message,function(err) {
     // handle the error
     if ( err ) {
       console.log("Error:" + err);
@@ -60,7 +60,7 @@ exports.post_message = functions.https.onRequest((request, response) => {
       return;
     }
     //If the publish is successful then return
-    response.send("payload posted sent!");
+    response.send("Successfullly published message: " + message + "  to topic: " + topic);
 
     //end the connection to the mqtt server
     client.end();
