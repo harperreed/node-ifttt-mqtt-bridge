@@ -2,7 +2,9 @@
 
 A simple firebase bridge that will take the topic and payload posted to a webhook and send it to a MQTT broker. 
 
-This is very helpful when connecting Google Home/Alexa/whatever to Home Assistant
+This is very helpful when connecting Google Home/Alexa/whatever to Home Assistant.
+
+Some inspiration came from the [IFTTT/Maker plugin for control4](https://www.chowmainsoft.com/ifttt/) and the [HTTP to MQTT bridge for home assistant](https://home-assistant.io/blog/2017/03/28/http-to-mqtt-bridge/). 
 
 ## Getting started
 
@@ -37,6 +39,8 @@ After you configure your vars, you can then deploy:
 
 `$ firebase deploy`
 
+Like so: 
+
     harper@ {~/src/node-ifttt-mqtt-bridge/functions}$ firebase deploy 
 
     === Deploying to 'mqtttest'...
@@ -61,5 +65,26 @@ After you configure your vars, you can then deploy:
 
 ## Usage
 
-Once you deploy you will get a URL 
+Once you deploy you will get a URL: `https://us-central1-mqtttest.cloudfunctions.net/post_message`
+
+You can use this url to send a topic and payload to the MQTT:
+
+`curl https://us-central1-mqtttest.cloudfunctions.net/post_message -d "topic=IFTTT/goodnight" -d "payload=on" -d "api_key=apikey"`
+
+response: 
+
+`payload posted sent!`
+
+You can send any topic or payload you want. 
+
+For instance: 
+
+`curl https://us-central1-mqtttest.cloudfunctions.net/post_message -d "topic=IFTTT/goodnight" -d "payload=on" -d "api_key=apikey"`
+
+### IFTTT
+
+You can put this into IFTTT Webhooks :
+
+
+
 
